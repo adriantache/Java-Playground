@@ -1,15 +1,13 @@
 package com.adriantache;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
 
 public class BouncingBall {
 
     public static void main() {
         char input = '!';
-        ArrayList<Integer> speedValues = new ArrayList<>();
+        StringBuilder speedValues = new StringBuilder();
 
         System.out.println("This is a program that simulates a ball bouncing on");
         System.out.println("a straight surface randomly filled with spikes. The ");
@@ -21,28 +19,29 @@ public class BouncingBall {
 
         //get user input
         try {
-            while (input != '\n')
+            while (input != '\n') {
                 input = (char) System.in.read();
-            speedValues.add(Integer.valueOf(input));
+                if (input != '\n') speedValues.append(input);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        int speed = processArray(speedValues);
+        int speed = Integer.valueOf(speedValues.toString().trim());
 
         if (speed == 0) {
             System.out.println("Speed cannot be 0!");
             return;
         }
 
-        boolean[] fieldOfSpikes = generateField(speed + 5);
+        boolean[] fieldOfSpikes = generateField(speed + 3);
 
         int lastPosition = processBallPath(speed, fieldOfSpikes);
 
         if (lastPosition >= 0) {
-            System.out.println("Ball stopped successfully at position " + lastPosition);
+            System.out.println("Ball stopped successfully at position " + (lastPosition+1));
         } else {
-            System.out.println("Ball popped at position " + Math.abs(lastPosition));
+            System.out.println("Ball popped at position " + (Math.abs(lastPosition)+1));
         }
 
         System.out.println();
@@ -97,18 +96,5 @@ public class BouncingBall {
         }
 
         return fieldOfSpikes;
-    }
-
-    private static int processArray(ArrayList<Integer> speedValues) {
-        int sum = 0, multiplier = 1;
-
-        Collections.reverse(speedValues);
-
-        for (Integer speedValue : speedValues) {
-            sum += speedValue * multiplier;
-            multiplier *= 10;
-        }
-
-        return sum;
     }
 }
