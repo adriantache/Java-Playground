@@ -6,33 +6,14 @@ import java.util.Random;
 public class BouncingBall {
 
     public static void main() {
-        char input = '!';
-        StringBuilder speedValues = new StringBuilder();
-
         System.out.println("This is a program that simulates a ball bouncing on");
         System.out.println("a straight surface randomly filled with spikes. The ");
         System.out.println("program takes the speed of the ball as input and tells ");
         System.out.println("you whether the ball will be able to come to a stop");
         System.out.println("safely or get popped by a spike.");
         System.out.println();
-        System.out.println("Please enter initial ball speed:");
 
-        //get user input
-        try {
-            while (input != '\n') {
-                input = (char) System.in.read();
-                if (input != '\n') speedValues.append(input);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        int speed = Integer.valueOf(speedValues.toString().trim());
-
-        if (speed == 0) {
-            System.out.println("Speed cannot be 0!");
-            return;
-        }
+        int speed = getSpeed();
 
         boolean[] fieldOfSpikes = generateField(speed + 3);
 
@@ -46,6 +27,38 @@ public class BouncingBall {
 
         System.out.println();
         printField(lastPosition, fieldOfSpikes);
+    }
+
+    private static int getSpeed(){
+        char input = '!';
+        StringBuilder speedValues = new StringBuilder();
+
+        System.out.println("Please enter initial ball speed:");
+
+        //get user input
+        try {
+            while (input != '\n') {
+                input = (char) System.in.read();
+                if (input != '\n') speedValues.append(input);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        int speed = 0;
+
+        try {
+            speed = Integer.valueOf(speedValues.toString().trim());
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+
+        if (speed == 0) {
+            System.out.println("Illegal speed value!");
+            return getSpeed();
+        }
+
+        return speed;
     }
 
     private static void printField(int lastPosition, boolean[] fieldOfSpikes) {
