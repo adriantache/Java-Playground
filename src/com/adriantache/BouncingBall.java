@@ -35,7 +35,7 @@ public class BouncingBall {
             return;
         }
 
-        boolean[] fieldOfSpikes = generateField(speed + 4);
+        boolean[] fieldOfSpikes = generateField(speed + 5);
 
         int lastPosition = processBallPath(speed, fieldOfSpikes);
 
@@ -59,9 +59,9 @@ public class BouncingBall {
                 if (popped) System.out.print('X');
                 else System.out.print('O');
             } else if (fieldOfSpikes[i]) System.out.print('^');
-            else System.out.print('_');
+            else System.out.print('~');
 
-            if ((i-1)%4==0) System.out.print('|');
+            if ((i + 1) % 4 == 0) System.out.print('|');
         }
     }
 
@@ -90,10 +90,9 @@ public class BouncingBall {
         if (size < 4) size = 4;
 
         boolean[] fieldOfSpikes = new boolean[size];
+        Random random = new Random();
 
         for (int i = 0; i < size; i++) {
-            Random random = new Random();
-
             fieldOfSpikes[i] = random.nextBoolean();
         }
 
