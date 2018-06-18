@@ -66,6 +66,8 @@ public class BouncingBall {
 
         lastPosition = Math.abs(lastPosition);
 
+        System.out.print('|');
+
         for (int i = 0; i < fieldOfSpikes.length; i++) {
             if (i == lastPosition) {
                 if (popped) System.out.print('X');

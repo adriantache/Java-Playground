@@ -19,7 +19,7 @@ public class Main {
 
         //exhaust buffer
         char buffer = '!';
-        while (buffer!='\n') {
+        while (buffer != '\n') {
             try {
                 buffer = (char) System.in.read();
             } catch (IOException e) {
@@ -28,7 +28,13 @@ public class Main {
         }
 
         //process input
-        if (input == '1') BouncingBall.main();
-        else  System.out.println("Illegal option!");
+        switch (input) {
+            case '1':
+                BouncingBall.main();
+                break;
+
+            default:
+                System.out.println("Illegal option!");
+        }
     }
 }
