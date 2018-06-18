@@ -15,7 +15,7 @@ public class BouncingBall {
 
         int speed = getSpeed();
 
-        boolean[] fieldOfSpikes = generateField(speed + 3);
+        boolean[] fieldOfSpikes = generateField(speed + (4-speed%4));
 
         int lastPosition = processBallPath(speed, fieldOfSpikes);
 

@@ -12,6 +12,7 @@ public class Main {
         //get user input
         try {
             input = (char) System.in.read();
+            if (input == '\n') input = (char) System.in.read();
         } catch (IOException e) {
             e.printStackTrace();
         }
