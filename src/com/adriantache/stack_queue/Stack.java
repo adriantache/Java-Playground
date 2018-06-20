@@ -13,6 +13,20 @@ class Stack {
         }
     }
 
+    //copy a stack
+    Stack(Stack stack) {
+        this.stack = stack.getStack();
+        this.putPosition = stack.getPutPosition();
+    }
+
+    int[] getStack() {
+        return stack;
+    }
+
+    int getPutPosition() {
+        return putPosition;
+    }
+
     int put(int value) {
         if (putPosition < stack.length) {
             stack[putPosition] = value;
