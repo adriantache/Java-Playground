@@ -32,7 +32,7 @@ class Stack {
         final int GET_POSITION = putPosition - 1;
 
         if (GET_POSITION >= 0 && stack[GET_POSITION] != ERROR_VALUE) {
-            shiftStack();
+            putPosition--;
 
             System.out.print(stack[GET_POSITION] + " ");
 
@@ -42,15 +42,5 @@ class Stack {
 
             return ERROR_VALUE;
         }
-    }
-
-    private void shiftStack() {
-        for (int i = putPosition - 1; i > 0; i--) {
-            stack[i - 1] = stack[i];
-        }
-
-        stack[putPosition - 1] = ERROR_VALUE;
-
-        putPosition--;
     }
 }
