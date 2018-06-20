@@ -22,7 +22,7 @@ class CircularQueue {
 
             return putPosition;
         } else {
-            System.out.print(" :queue reset: ");
+            System.out.print(":queue reset: ");
 
             putPosition = 0;
             put(value);
@@ -47,9 +47,7 @@ class CircularQueue {
     }
 
     private void shiftQueue() {
-        for (int i = 0; i < queue.length - 1; i++) {
-            queue[i] = queue[i + 1];
-        }
+        System.arraycopy(queue, 1, queue, 0, queue.length - 1);
 
         queue[queue.length - 1] = ERROR_VALUE;
 

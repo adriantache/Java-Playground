@@ -5,6 +5,7 @@ public class StackQueue {
     public static void main() {
         final int ERROR_VALUE = -1;
         final int QUEUE_SIZE = 10;
+        int temp;
 
         System.out.println("This is a program that creates a few tools such as a");
         System.out.println("normal queue, a circular queue and a stack.");
@@ -22,42 +23,41 @@ public class StackQueue {
         //regular queue
         System.out.println();
         System.out.println();
-        System.out.println("First we try to put the data in a regular size 10 queue:");
+        System.out.println("First we try to put the data in a regular size " + QUEUE_SIZE + " queue:");
         Queue queue = new Queue(QUEUE_SIZE);
-        for (int i = 0; i < values.length; i++) {
-            if (queue.put(values[i]) == ERROR_VALUE) break;
+        for (int value2 : values) {
+            if (queue.put(value2) == ERROR_VALUE) break;
         }
         System.out.println();
         System.out.println("Then we try to fetch the data from that queue:");
-        for (int i = 0; i < values.length; i++) {
-            if (queue.get() == ERROR_VALUE) break;
-        }
+        do {
+            temp = queue.get();
+        } while (temp != ERROR_VALUE);
 
         //circular queue
         System.out.println();
         System.out.println();
-        System.out.println("First we try to put the data in a size 10 circular queue:");
+        System.out.println("First we try to put the data in a size " + QUEUE_SIZE + " circular queue:");
         CircularQueue circularQueue = new CircularQueue(QUEUE_SIZE);
-        for (int i = 0; i < values.length; i++) {
-            circularQueue.put(values[i]);
+        for (int value1 : values) {
+            circularQueue.put(value1);
         }
         System.out.println();
         System.out.println("Then we try to fetch the data from that queue:");
-        for (int i = 0; i < values.length; i++) {
-            if (circularQueue.get() == ERROR_VALUE) break;
-        }
+        do {
+            temp = circularQueue.get();
+        } while (temp != ERROR_VALUE);
 
         //stack
         System.out.println();
         System.out.println();
-        System.out.println("First we try to put the data in a size 10 stack:");
+        System.out.println("First we try to put the data in a size " + QUEUE_SIZE + " stack:");
         Stack stack = new Stack(QUEUE_SIZE);
-        for (int i = 0; i < values.length; i++) {
-            if (stack.put(values[i]) == ERROR_VALUE) break;
+        for (int value : values) {
+            if (stack.put(value) == ERROR_VALUE) break;
         }
         System.out.println();
         System.out.println("Then we try to fetch the data from that stack:");
-        int temp;
         do {
             temp = stack.get();
         } while (temp != ERROR_VALUE);
