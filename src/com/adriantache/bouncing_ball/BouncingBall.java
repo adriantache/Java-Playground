@@ -1,4 +1,4 @@
-package com.adriantache;
+package com.adriantache.bouncing_ball;
 
 import java.io.IOException;
 import java.util.Random;

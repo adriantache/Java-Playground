@@ -1,5 +1,8 @@
 package com.adriantache;
 
+import com.adriantache.bouncing_ball.BouncingBall;
+import com.adriantache.stack_queue.StackQueue;
+
 import java.io.IOException;
 
 public class Main {
@@ -7,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
         char input = '!';
 
-        System.out.println("Choose an option:\n1. Bouncing Ball\n");
+        System.out.println("Choose an option:\n1. Bouncing Ball\n2. Stack/Queue\n");
 
         //get user input
         try {
@@ -32,7 +35,9 @@ public class Main {
             case '1':
                 BouncingBall.main();
                 break;
-
+            case '2':
+                StackQueue.main();
+                break;
             default:
                 System.out.println("Illegal option!");
         }
