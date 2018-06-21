@@ -13,22 +13,32 @@ class CircularQueue {
         }
     }
 
-    int put(int value) {
+    //copy a queue
+    CircularQueue(CircularQueue queue) {
+        this.queue = queue.getQueue();
+        this.putPosition = queue.getPutPosition();
+    }
+
+    private int[] getQueue() {
+        return queue;
+    }
+
+    private int getPutPosition() {
+        return putPosition;
+    }
+
+    void put(int value) {
         if (putPosition < queue.length) {
             queue[putPosition] = value;
             putPosition++;
 
             System.out.print(value + " ");
-
-            return putPosition;
         } else {
             System.out.print(":queue reset: ");
 
             putPosition = 0;
             put(value);
         }
-
-        return ERROR_VALUE;
     }
 
     int get() {

@@ -13,6 +13,20 @@ class Queue {
         }
     }
 
+    //copy a queue
+    Queue(Queue queue) {
+        this.queue = queue.getQueue();
+        this.putPosition = queue.getPutPosition();
+    }
+
+    private int[] getQueue() {
+        return queue;
+    }
+
+    private int getPutPosition() {
+        return putPosition;
+    }
+
     int put(int value) {
         if (putPosition < queue.length) {
             queue[putPosition] = value;

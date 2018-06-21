@@ -19,11 +19,11 @@ class Stack {
         this.putPosition = stack.getPutPosition();
     }
 
-    int[] getStack() {
+    private int[] getStack() {
         return stack;
     }
 
-    int getPutPosition() {
+    private int getPutPosition() {
         return putPosition;
     }
 
