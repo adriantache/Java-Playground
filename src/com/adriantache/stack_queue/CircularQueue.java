@@ -15,7 +15,10 @@ class CircularQueue {
 
     //copy a queue
     CircularQueue(CircularQueue queue) {
-        this.queue = queue.getQueue();
+        int[] temp = queue.getQueue();
+        this.queue = new int[temp.length];
+        System.arraycopy(temp, 0, this.queue, 0, temp.length);
+
         this.putPosition = queue.getPutPosition();
     }
 

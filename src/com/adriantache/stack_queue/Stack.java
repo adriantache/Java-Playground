@@ -15,7 +15,10 @@ class Stack {
 
     //copy a stack
     Stack(Stack stack) {
-        this.stack = stack.getStack();
+        int[] temp = stack.getStack();
+        this.stack = new int[temp.length];
+        System.arraycopy(temp, 0, this.stack, 0, temp.length);
+
         this.putPosition = stack.getPutPosition();
     }
 
