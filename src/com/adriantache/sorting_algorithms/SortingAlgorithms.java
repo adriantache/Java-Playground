@@ -51,7 +51,7 @@ public class SortingAlgorithms {
     }
 
     private static int[] createRandomArray() {
-        final int ARRAY_SIZE = -1;
+        final int ARRAY_SIZE = 25;
         int[] values = new int[ARRAY_SIZE];
 
         Random random = new Random();
