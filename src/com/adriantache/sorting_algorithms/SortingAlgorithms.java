@@ -17,6 +17,7 @@ public class SortingAlgorithms {
         values = bubbleSort(values);
         System.out.println("Array sorted with BubbleSort:");
         System.out.println(Arrays.toString(values));
+        checkArraySorted(values);
 
         //arrays.sort
         System.out.println();
@@ -26,6 +27,17 @@ public class SortingAlgorithms {
         Arrays.sort(values);
         System.out.println("Array sorted with Arrays.sort:");
         System.out.println(Arrays.toString(values));
+        checkArraySorted(values);
+
+        //arrays.parallelSort
+        System.out.println();
+        values = createRandomArray();
+        System.out.println("Initial array:");
+        System.out.println(Arrays.toString(values));
+        Arrays.parallelSort(values);
+        System.out.println("Array sorted with Arrays.sort:");
+        System.out.println(Arrays.toString(values));
+        checkArraySorted(values);
 
         //quicksort
         System.out.println();
@@ -35,6 +47,7 @@ public class SortingAlgorithms {
         quickSort(values, 0, values.length - 1);
         System.out.println("Array sorted with QuickSort:");
         System.out.println(Arrays.toString(values));
+        checkArraySorted(values);
     }
 
     private static int[] createRandomArray() {
@@ -47,6 +60,17 @@ public class SortingAlgorithms {
         }
 
         return values;
+    }
+
+    private static void checkArraySorted(int[] values) {
+        for (int i = 0; i < values.length-1; i++) {
+            if (values[i]>values[i+1]) {
+                System.out.println("Array is NOT sorted. [!!!]");
+                return;
+            }
+        }
+
+        System.out.println("Array is sorted.");
     }
 
     private static void quickSort(int[] values, int low, int high) {
