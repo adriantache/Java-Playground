@@ -1,7 +1,6 @@
 package com.adriantache.stack_queue;
 
-class CircularQueue {
-    private static final int ERROR_VALUE = -1;
+class CircularQueue implements QueueTemplate {
     private int[] queue;
     private int putPosition = 0;
 
@@ -30,7 +29,7 @@ class CircularQueue {
         return putPosition;
     }
 
-    void put(int value) {
+    public int put(int value) {
         if (putPosition < queue.length) {
             queue[putPosition] = value;
             putPosition++;
@@ -42,9 +41,11 @@ class CircularQueue {
             putPosition = 0;
             put(value);
         }
+
+        return 0;
     }
 
-    int get() {
+    public int get() {
         if (queue[0] != ERROR_VALUE) {
             int temp = queue[0];
             shiftQueue();

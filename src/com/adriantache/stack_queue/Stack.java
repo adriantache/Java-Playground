@@ -1,7 +1,6 @@
 package com.adriantache.stack_queue;
 
-class Stack {
-    private static final int ERROR_VALUE = -1;
+class Stack implements QueueTemplate {
     private int[] stack;
     private int putPosition = 0;
 
@@ -30,7 +29,7 @@ class Stack {
         return putPosition;
     }
 
-    int put(int value) {
+    public int put(int value) {
         if (putPosition < stack.length) {
             stack[putPosition] = value;
             putPosition++;
@@ -45,7 +44,7 @@ class Stack {
         }
     }
 
-    int get() {
+    public int get() {
         final int GET_POSITION = putPosition - 1;
 
         if (GET_POSITION >= 0 && stack[GET_POSITION] != ERROR_VALUE) {
