@@ -1,6 +1,7 @@
 package com.adriantache;
 
 import com.adriantache.bouncing_ball.BouncingBall;
+import com.adriantache.palindrome.Palindrome;
 import com.adriantache.sorting_algorithms.SortingAlgorithms;
 import com.adriantache.stack_queue.StackQueue;
 
@@ -14,7 +15,8 @@ public class Main {
         System.out.println("Choose an option:\n" +
                 "1. Bouncing Ball\n" +
                 "2. Stack/Queue\n" +
-                "3. Sorting Algorithms\n");
+                "3. Sorting Algorithms\n" +
+                "4. Palindrome\n");
 
         //get user input
         try {
@@ -44,6 +46,9 @@ public class Main {
                 break;
             case '3':
                 SortingAlgorithms.main();
+                break;
+            case '4':
+                Palindrome.main();
                 break;
             default:
                 System.out.println("Illegal option!");
