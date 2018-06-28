@@ -1,5 +1,7 @@
 package com.adriantache.stack_queue;
 
+import static com.adriantache.utils.Utils.backToMain;
+
 public class StackQueue {
 
     public static void main() {
@@ -63,5 +65,7 @@ public class StackQueue {
         } while (temp != ERROR_VALUE);
 
         System.out.println();
+
+        backToMain();
     }
 }

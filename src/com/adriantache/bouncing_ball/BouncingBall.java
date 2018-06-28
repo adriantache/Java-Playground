@@ -3,6 +3,8 @@ package com.adriantache.bouncing_ball;
 import java.io.IOException;
 import java.util.Random;
 
+import static com.adriantache.utils.Utils.backToMain;
+
 public class BouncingBall {
 
     public static void main() {
@@ -27,6 +29,8 @@ public class BouncingBall {
 
         System.out.println();
         printField(lastPosition, fieldOfSpikes);
+
+        backToMain();
     }
 
     private static int getSpeed(){

@@ -3,6 +3,8 @@ package com.adriantache.sorting_algorithms;
 import java.util.Arrays;
 import java.util.Random;
 
+import static com.adriantache.utils.Utils.backToMain;
+
 public class SortingAlgorithms {
     public static void main() {
         System.out.println("This is a program that uses a number of ");
@@ -48,6 +50,8 @@ public class SortingAlgorithms {
         System.out.println("Array sorted with QuickSort:");
         System.out.println(Arrays.toString(values));
         checkArraySorted(values);
+
+        backToMain();
     }
 
     private static int[] createRandomArray() {

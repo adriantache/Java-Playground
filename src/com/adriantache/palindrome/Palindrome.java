@@ -2,6 +2,8 @@ package com.adriantache.palindrome;
 
 import java.io.IOException;
 
+import static com.adriantache.utils.Utils.backToMain;
+
 public class Palindrome {
     public static void main() {
         char input;
@@ -24,10 +26,12 @@ public class Palindrome {
         if (sb.length() == 0) {
             System.out.println("Illegal input!");
         } else if (testPalindrome(sb.toString())) {
-            System.out.println("Input " + sb + " is a palindrome.");
+            System.out.println("Input \"" + sb + "\" is a palindrome.");
         } else {
-            System.out.println("Input " + sb + " is NOT a palindrome.");
+            System.out.println("Input \"" + sb + "\" is NOT a palindrome.");
         }
+
+        backToMain();
     }
 
     private static boolean testPalindrome(String s) {
