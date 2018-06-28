@@ -1,6 +1,7 @@
 package com.adriantache.stack_queue;
 
 import static com.adriantache.utils.Utils.backToMain;
+import static com.adriantache.utils.Utils.printDescription;
 
 public class StackQueue {
 
@@ -9,9 +10,8 @@ public class StackQueue {
         final int QUEUE_SIZE = 10;
         int temp;
 
-        System.out.println("This is a program that creates a few tools such as a");
-        System.out.println("normal queue, a circular queue and a stack.");
-        System.out.println();
+        printDescription("This is a program that creates a few tools such as a\n" +
+                "normal queue, a circular queue and a stack.");
 
         //initial values
         int[] values = new int[QUEUE_SIZE * 2];

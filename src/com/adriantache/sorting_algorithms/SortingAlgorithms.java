@@ -4,12 +4,12 @@ import java.util.Arrays;
 import java.util.Random;
 
 import static com.adriantache.utils.Utils.backToMain;
+import static com.adriantache.utils.Utils.printDescription;
 
 public class SortingAlgorithms {
     public static void main() {
-        System.out.println("This is a program that uses a number of ");
-        System.out.println("sorting algorithms to sort a random array.");
-        System.out.println();
+        printDescription("This is a program that uses a number of \n"
+                + "sorting algorithms to sort a random array.");
 
         int[] values = createRandomArray();
 
@@ -41,7 +41,7 @@ public class SortingAlgorithms {
         System.out.println(Arrays.toString(values));
         checkArraySorted(values);
 
-        //quicksort
+        //QuickSort
         System.out.println();
         values = createRandomArray();
         System.out.println("Initial array:");
@@ -67,8 +67,8 @@ public class SortingAlgorithms {
     }
 
     private static void checkArraySorted(int[] values) {
-        for (int i = 0; i < values.length-1; i++) {
-            if (values[i]>values[i+1]) {
+        for (int i = 0; i < values.length - 1; i++) {
+            if (values[i] > values[i + 1]) {
                 System.out.println("Array is NOT sorted. [!!!]");
                 return;
             }

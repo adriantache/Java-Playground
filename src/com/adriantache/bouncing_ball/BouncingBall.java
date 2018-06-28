@@ -1,30 +1,28 @@
 package com.adriantache.bouncing_ball;
 
-import java.io.IOException;
 import java.util.Random;
 
-import static com.adriantache.utils.Utils.backToMain;
+import static com.adriantache.utils.Utils.*;
 
 public class BouncingBall {
 
     public static void main() {
-        System.out.println("This is a program that simulates a ball bouncing on");
-        System.out.println("a straight surface randomly filled with spikes. The ");
-        System.out.println("program takes the speed of the ball as input and tells ");
-        System.out.println("you whether the ball will be able to come to a stop");
-        System.out.println("safely or get popped by a spike.");
-        System.out.println();
+        printDescription("This is a program that simulates a ball bouncing on\n" +
+                "a straight surface randomly filled with spikes. The \n" +
+                "program takes the speed of the ball as input and tells \n" +
+                "you whether the ball will be able to come to a stop\n" +
+                "safely or get popped by a spike.");
 
         int speed = getSpeed();
 
-        boolean[] fieldOfSpikes = generateField(speed + (4-speed%4));
+        boolean[] fieldOfSpikes = generateField(speed + (4 - speed % 4));
 
         int lastPosition = processBallPath(speed, fieldOfSpikes);
 
         if (lastPosition >= 0) {
-            System.out.println("Ball stopped successfully at position " + (lastPosition+1));
+            System.out.println("Ball stopped successfully at position " + (lastPosition + 1));
         } else {
-            System.out.println("Ball popped at position " + (Math.abs(lastPosition)+1));
+            System.out.println("Ball popped at position " + (Math.abs(lastPosition) + 1));
         }
 
         System.out.println();
@@ -33,26 +31,15 @@ public class BouncingBall {
         backToMain();
     }
 
-    private static int getSpeed(){
-        char input = '!';
-        StringBuilder speedValues = new StringBuilder();
-
+    private static int getSpeed() {
         System.out.println("Please enter initial ball speed:");
 
-        //get user input
-        try {
-            while (input != '\n') {
-                input = (char) System.in.read();
-                if (input != '\n') speedValues.append(input);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        String speedValues = takeInput(true);
 
         int speed = 0;
 
         try {
-            speed = Integer.valueOf(speedValues.toString().trim());
+            speed = Integer.valueOf(speedValues.trim());
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
