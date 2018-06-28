@@ -36,10 +36,15 @@ public class BouncingBall {
 
         String speedValues = takeInput(true);
 
+        if (speedValues.isEmpty()) {
+            System.out.println("Illegal speed value!");
+            return getSpeed();
+        }
+
         int speed = 0;
 
         try {
-            speed = Integer.valueOf(speedValues.trim());
+            speed = Integer.parseInt(speedValues.trim());
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
