@@ -8,7 +8,7 @@ public class Palindrome {
         StringBuilder sb = new StringBuilder();
 
         System.out.println("This is a program that accepts a user input ");
-        System.out.println("and verifies if the number is a palindrome.");
+        System.out.println("and verifies if it is a palindrome.");
         System.out.println();
 
         //get user input
@@ -21,10 +21,12 @@ public class Palindrome {
             e.printStackTrace();
         }
 
-        if (testPalindrome(sb.toString())) {
-            System.out.println("Number " + sb + " is a palindrome.");
+        if (sb.length() == 0) {
+            System.out.println("Illegal input!");
+        } else if (testPalindrome(sb.toString())) {
+            System.out.println("Input " + sb + " is a palindrome.");
         } else {
-            System.out.println("Number " + sb + " is NOT a palindrome.");
+            System.out.println("Input " + sb + " is NOT a palindrome.");
         }
     }
 
