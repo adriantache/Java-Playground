@@ -1,0 +1,83 @@
+package com.adriantache.stack_queue;
+
+class GrowableQueue {
+    private static final int ERROR_VALUE = -1;
+    private int[] queue;
+    private int putPosition = 0;
+
+    GrowableQueue(int size) {
+        queue = new int[size];
+
+        for (int i = 0; i < queue.length; i++) {
+            queue[i] = ERROR_VALUE;
+        }
+    }
+
+    //copy a queue
+    GrowableQueue(GrowableQueue queue) {
+        int[] temp = queue.getQueue();
+        this.queue = new int[temp.length];
+        System.arraycopy(temp, 0, this.queue, 0, temp.length);
+
+        this.putPosition = queue.getPutPosition();
+    }
+
+    private int[] getQueue() {
+        return queue;
+    }
+
+    private int getPutPosition() {
+        return putPosition;
+    }
+
+    int put(int value) {
+        if (putPosition < queue.length) {
+            queue[putPosition] = value;
+            putPosition++;
+
+            System.out.print(value + " ");
+
+            return putPosition;
+        } else {
+            int[] temp = new int[putPosition + 1];
+
+            //copy existing queue to new queue
+            System.arraycopy(this.queue, 0, temp, 0, this.queue.length);
+
+            //change the reference of the queue to the temporary queue
+            this.queue = temp;
+
+            //add the value
+            this.queue[putPosition] = value;
+
+            System.out.print(value + " ");
+
+            putPosition++;
+
+            return putPosition;
+        }
+    }
+
+    int get() {
+        if (queue[0] != ERROR_VALUE) {
+            int temp = queue[0];
+            shiftQueue();
+
+            System.out.print(temp + " ");
+
+            return temp;
+        } else {
+            System.out.print("Queue is empty!");
+
+            return ERROR_VALUE;
+        }
+    }
+
+    private void shiftQueue() {
+        System.arraycopy(queue, 1, queue, 0, queue.length - 1);
+
+        queue[queue.length - 1] = ERROR_VALUE;
+
+        putPosition--;
+    }
+}

@@ -9,6 +9,7 @@ public class StackQueue {
         final int ERROR_VALUE = -1;
         final int QUEUE_SIZE = 10;
         int temp;
+        String FETCH_MESSAGE = "Then we try to fetch the data from that ";
 
         printDescription("This is a program that creates a few tools such as a\n" +
                 "normal queue, a circular queue and a stack.");
@@ -31,7 +32,7 @@ public class StackQueue {
             if (queue.put(value2) == ERROR_VALUE) break;
         }
         System.out.println();
-        System.out.println("Then we try to fetch the data from that queue:");
+        System.out.println(FETCH_MESSAGE + "queue:");
         do {
             temp = queue.get();
         } while (temp != ERROR_VALUE);
@@ -45,9 +46,23 @@ public class StackQueue {
             circularQueue.put(value1);
         }
         System.out.println();
-        System.out.println("Then we try to fetch the data from that queue:");
+        System.out.println(FETCH_MESSAGE + "queue:");
         do {
             temp = circularQueue.get();
+        } while (temp != ERROR_VALUE);
+
+        //growable queue
+        System.out.println();
+        System.out.println();
+        System.out.println("First we try to put the data in a \"growable\" queue:");
+        GrowableQueue growableQueue = new GrowableQueue(QUEUE_SIZE);
+        for (int value3 : values) {
+            growableQueue.put(value3);
+        }
+        System.out.println();
+        System.out.println(FETCH_MESSAGE + "queue:");
+        do {
+            temp = growableQueue.get();
         } while (temp != ERROR_VALUE);
 
         //stack
@@ -59,7 +74,7 @@ public class StackQueue {
             if (stack.put(value) == ERROR_VALUE) break;
         }
         System.out.println();
-        System.out.println("Then we try to fetch the data from that stack:");
+        System.out.println(FETCH_MESSAGE + "stack:");
         do {
             temp = stack.get();
         } while (temp != ERROR_VALUE);
