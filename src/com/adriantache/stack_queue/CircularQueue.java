@@ -1,5 +1,7 @@
 package com.adriantache.stack_queue;
 
+import static com.adriantache.utils.Utils.ERROR_VALUE;
+
 class CircularQueue implements QueueTemplate {
     private int[] queue;
     private int putPosition = 0;

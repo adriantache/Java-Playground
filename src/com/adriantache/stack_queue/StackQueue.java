@@ -1,12 +1,12 @@
 package com.adriantache.stack_queue;
 
+import static com.adriantache.utils.Utils.ERROR_VALUE;
 import static com.adriantache.utils.Utils.backToMain;
 import static com.adriantache.utils.Utils.printDescription;
 
 public class StackQueue {
 
     public static void main() {
-        final int ERROR_VALUE = -1;
         final int QUEUE_SIZE = 10;
         int temp;
         final String FETCH_MESSAGE = "Then we try to fetch the data from that ";
