@@ -9,7 +9,7 @@ public class StackQueue {
         final int ERROR_VALUE = -1;
         final int QUEUE_SIZE = 10;
         int temp;
-        String FETCH_MESSAGE = "Then we try to fetch the data from that ";
+        final String FETCH_MESSAGE = "Then we try to fetch the data from that ";
 
         printDescription("This is a program that creates a few tools such as a\n" +
                 "normal queue, a circular queue and a stack.");
@@ -54,13 +54,13 @@ public class StackQueue {
         //growable queue
         System.out.println();
         System.out.println();
-        System.out.println("First we try to put the data in a \"growable\" queue:");
+        System.out.println("First we try to put the data in a \"growable\" size " + QUEUE_SIZE + " queue:");
         GrowableQueue growableQueue = new GrowableQueue(QUEUE_SIZE);
         for (int value3 : values) {
             growableQueue.put(value3);
         }
         System.out.println();
-        System.out.println(FETCH_MESSAGE + "queue:");
+        System.out.println(FETCH_MESSAGE + "size " + growableQueue.getQueueSize() + " queue:");
         do {
             temp = growableQueue.get();
         } while (temp != ERROR_VALUE);

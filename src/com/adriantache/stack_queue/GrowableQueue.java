@@ -38,12 +38,13 @@ class GrowableQueue implements QueueTemplate {
 
             return putPosition;
         } else {
+            //create a queue that is 1 position larger than the existing queue
             int[] temp = new int[putPosition + 1];
 
             //copy existing queue to new queue
             System.arraycopy(this.queue, 0, temp, 0, this.queue.length);
 
-            //change the reference of the queue to the temporary queue
+            //assign by reference the queue to the temporary queue
             this.queue = temp;
 
             //add the value
@@ -78,5 +79,9 @@ class GrowableQueue implements QueueTemplate {
         queue[queue.length - 1] = ERROR_VALUE;
 
         putPosition--;
+    }
+
+    int getQueueSize(){
+        return queue.length;
     }
 }
