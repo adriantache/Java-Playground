@@ -32,25 +32,23 @@ public class BouncingBall {
     }
 
     private static int getSpeed() {
+        final String ERROR_MESSAGE_SPEED = "Illegal speed value!";
+        int speed;
+
         System.out.println("Please enter initial ball speed:");
 
         String speedValues = takeInput(true);
-
-        if (speedValues.isEmpty()) {
-            System.out.println("Illegal speed value!");
-            return getSpeed();
-        }
-
-        int speed = 0;
-
+        
         try {
             speed = Integer.parseInt(speedValues.trim());
         } catch (NumberFormatException e) {
             e.printStackTrace();
+            System.out.println(ERROR_MESSAGE_SPEED);
+            return getSpeed();
         }
 
         if (speed == 0) {
-            System.out.println("Illegal speed value!");
+            System.out.println(ERROR_MESSAGE_SPEED);
             return getSpeed();
         }
 
