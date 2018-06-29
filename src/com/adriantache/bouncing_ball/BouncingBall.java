@@ -38,11 +38,10 @@ public class BouncingBall {
         System.out.println("Please enter initial ball speed:");
 
         String speedValues = takeInput(true);
-        
+
         try {
             speed = Integer.parseInt(speedValues.trim());
         } catch (NumberFormatException e) {
-            e.printStackTrace();
             System.out.println(ERROR_MESSAGE_SPEED);
             return getSpeed();
         }
