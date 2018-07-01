@@ -60,7 +60,7 @@ class GrowableQueue implements QueueTemplate {
         }
     }
 
-    public int get() {
+    public int get() throws QueueEmptyException{
         if (queue[0] != ERROR_VALUE) {
             int temp = queue[0];
             shiftQueue();
@@ -69,9 +69,7 @@ class GrowableQueue implements QueueTemplate {
 
             return temp;
         } else {
-            System.out.print("Queue is empty!");
-
-            return ERROR_VALUE;
+           throw new QueueEmptyException(true);
         }
     }
 

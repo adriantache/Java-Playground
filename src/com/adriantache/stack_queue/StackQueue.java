@@ -1,14 +1,10 @@
 package com.adriantache.stack_queue;
 
-import static com.adriantache.utils.Utils.ERROR_VALUE;
-import static com.adriantache.utils.Utils.backToMain;
-import static com.adriantache.utils.Utils.printDescription;
+import static com.adriantache.utils.Utils.*;
 
 public class StackQueue {
-
     public static void main() {
         final int QUEUE_SIZE = 10;
-        int temp;
         final String FETCH_MESSAGE = "Then we try to fetch the data from that ";
 
         printDescription("This is a program that creates a few tools such as a\n" +
@@ -19,7 +15,7 @@ public class StackQueue {
         System.out.print("Initial values: ");
         for (int i = 0; i < values.length; i++) {
             values[i] = i + 1;
-            System.out.print(i);
+            System.out.print(i+1);
             if (i < values.length - 1) System.out.print(',');
         }
 
@@ -29,16 +25,22 @@ public class StackQueue {
         System.out.println("First we try to put the data in a regular size " + QUEUE_SIZE + " queue:");
         Queue queue = new Queue(QUEUE_SIZE);
         for (int value2 : values) {
-            if (queue.put(value2) == ERROR_VALUE) break;
+            try {
+                queue.put(value2);
+            } catch (QueueFullException e) {
+                break;
+            }
         }
-        System.out.println();
         System.out.println(FETCH_MESSAGE + "queue:");
         do {
-            temp = queue.get();
-        } while (temp != ERROR_VALUE);
+            try {
+                queue.get();
+            } catch (QueueEmptyException e) {
+                break;
+            }
+        } while(true);
 
         //circular queue
-        System.out.println();
         System.out.println();
         System.out.println("First we try to put the data in a size " + QUEUE_SIZE + " circular queue:");
         CircularQueue circularQueue = new CircularQueue(QUEUE_SIZE);
@@ -48,11 +50,14 @@ public class StackQueue {
         System.out.println();
         System.out.println(FETCH_MESSAGE + "queue:");
         do {
-            temp = circularQueue.get();
-        } while (temp != ERROR_VALUE);
+            try {
+                circularQueue.get();
+            } catch (QueueEmptyException e) {
+                break;
+            }
+        } while(true);
 
         //growable queue
-        System.out.println();
         System.out.println();
         System.out.println("First we try to put the data in a \"growable\" size " + QUEUE_SIZE + " queue:");
         GrowableQueue growableQueue = new GrowableQueue(QUEUE_SIZE);
@@ -62,22 +67,32 @@ public class StackQueue {
         System.out.println();
         System.out.println(FETCH_MESSAGE + "size " + growableQueue.getQueueSize() + " queue:");
         do {
-            temp = growableQueue.get();
-        } while (temp != ERROR_VALUE);
+            try {
+                growableQueue.get();
+            } catch (QueueEmptyException e) {
+                break;
+            }
+        } while(true);
 
         //stack
-        System.out.println();
         System.out.println();
         System.out.println("First we try to put the data in a size " + QUEUE_SIZE + " stack:");
         Stack stack = new Stack(QUEUE_SIZE);
         for (int value : values) {
-            if (stack.put(value) == ERROR_VALUE) break;
+            try {
+                stack.put(value);
+            } catch (QueueFullException e) {
+                break;
+            }
         }
-        System.out.println();
         System.out.println(FETCH_MESSAGE + "stack:");
         do {
-            temp = stack.get();
-        } while (temp != ERROR_VALUE);
+            try {
+                stack.get();
+            } catch (QueueEmptyException e) {
+                break;
+            }
+        } while(true);
 
         System.out.println();
 

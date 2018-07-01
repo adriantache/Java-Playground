@@ -47,7 +47,7 @@ class CircularQueue implements QueueTemplate {
         return 0;
     }
 
-    public int get() {
+    public int get() throws QueueEmptyException {
         if (queue[0] != ERROR_VALUE) {
             int temp = queue[0];
             shiftQueue();
@@ -56,9 +56,7 @@ class CircularQueue implements QueueTemplate {
 
             return temp;
         } else {
-            System.out.print("Queue is empty!");
-
-            return ERROR_VALUE;
+            throw new QueueEmptyException(true);
         }
     }
 

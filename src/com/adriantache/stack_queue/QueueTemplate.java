@@ -1,7 +1,7 @@
 package com.adriantache.stack_queue;
 
 public interface QueueTemplate {
-    int put(int value);
+    int put(int value) throws QueueFullException;
 
-    int get();
+    int get() throws QueueEmptyException;
 }

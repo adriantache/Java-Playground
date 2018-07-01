@@ -31,7 +31,7 @@ class Stack implements QueueTemplate {
         return putPosition;
     }
 
-    public int put(int value) {
+    public int put(int value) throws QueueFullException {
         if (putPosition < stack.length) {
             stack[putPosition] = value;
             putPosition++;
@@ -40,13 +40,11 @@ class Stack implements QueueTemplate {
 
             return putPosition;
         } else {
-            System.out.print("Stack is full!");
-
-            return ERROR_VALUE;
+            throw new QueueFullException(false);
         }
     }
 
-    public int get() {
+    public int get() throws QueueEmptyException {
         final int GET_POSITION = putPosition - 1;
 
         if (GET_POSITION >= 0 && stack[GET_POSITION] != ERROR_VALUE) {
@@ -56,9 +54,7 @@ class Stack implements QueueTemplate {
 
             return stack[GET_POSITION];
         } else {
-            System.out.print("Stack is empty!");
-
-            return ERROR_VALUE;
+            throw new QueueEmptyException(false);
         }
     }
 }

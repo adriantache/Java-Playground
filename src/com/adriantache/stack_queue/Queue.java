@@ -31,7 +31,7 @@ class Queue implements QueueTemplate {
         return putPosition;
     }
 
-    public int put(int value) {
+    public int put(int value) throws QueueFullException{
         if (putPosition < queue.length) {
             queue[putPosition] = value;
             putPosition++;
@@ -40,13 +40,11 @@ class Queue implements QueueTemplate {
 
             return putPosition;
         } else {
-            System.out.print("Queue is full!");
-
-            return ERROR_VALUE;
+            throw new QueueFullException(true);
         }
     }
 
-    public int get() {
+    public int get() throws QueueEmptyException{
         if (queue[0] != ERROR_VALUE) {
             int temp = queue[0];
             shiftQueue();
@@ -55,9 +53,7 @@ class Queue implements QueueTemplate {
 
             return temp;
         } else {
-            System.out.print("Queue is empty!");
-
-            return ERROR_VALUE;
+            throw new QueueEmptyException(true);
         }
     }
 
