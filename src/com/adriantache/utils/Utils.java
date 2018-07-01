@@ -7,6 +7,10 @@ import java.io.IOException;
 public class Utils {
     public static final int ERROR_VALUE = -1;
 
+    private Utils() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static void backToMain() {
         System.out.println();
         System.out.println("Go back to main menu? (y/n)");

@@ -7,6 +7,10 @@ import static com.adriantache.utils.Utils.backToMain;
 import static com.adriantache.utils.Utils.printDescription;
 
 public class SortingAlgorithms {
+    private SortingAlgorithms() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static void main() {
         printDescription("This is a program that uses a number of \n"
                 + "sorting algorithms to sort a random array.");

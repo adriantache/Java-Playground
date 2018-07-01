@@ -3,6 +3,10 @@ package com.adriantache.palindrome;
 import static com.adriantache.utils.Utils.*;
 
 public class Palindrome {
+    private Palindrome() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static void main() {
         printDescription("This is a program that accepts a user input \n" +
                 "and verifies if it is a palindrome.");

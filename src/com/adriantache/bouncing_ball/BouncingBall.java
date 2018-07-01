@@ -5,6 +5,9 @@ import java.util.Random;
 import static com.adriantache.utils.Utils.*;
 
 public class BouncingBall {
+    private BouncingBall() {
+        throw new IllegalStateException("Utility class");
+    }
 
     public static void main() {
         printDescription("This is a program that simulates a ball bouncing on\n" +

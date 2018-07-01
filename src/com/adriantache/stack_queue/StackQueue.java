@@ -3,6 +3,10 @@ package com.adriantache.stack_queue;
 import static com.adriantache.utils.Utils.*;
 
 public class StackQueue {
+    private StackQueue() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static void main() {
         final int QUEUE_SIZE = 10;
         final String FETCH_MESSAGE = "Then we try to fetch the data from that ";
