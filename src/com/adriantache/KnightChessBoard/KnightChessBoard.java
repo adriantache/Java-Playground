@@ -1,5 +1,7 @@
 package com.adriantache.KnightChessBoard;
 
+import com.adriantache.utils.Utils;
+
 import java.util.Arrays;
 import java.util.Random;
 
@@ -20,8 +22,6 @@ public class KnightChessBoard {
     }
 
     public static void main() {
-
-
         printDescription("This is a program that finds the minimum number of \n" +
                 "moves a horse must make on a chessboard to cover the \n" +
                 "entire chessboard only once.");
@@ -43,23 +43,32 @@ public class KnightChessBoard {
         //simulate random moves
         simulateRandomMoves();
 
-
         //go to main
-//        Utils.backToMain();
+        resetGame();
+        Utils.backToMain();
+    }
 
+    private static void resetGame(){
+        chessboard = new int[8][8];
+        noMoves = false;
+        movesMade = 0;
     }
 
     private static void printOutChessboard() {
         //playing with some console colouring
         String green = "\u001B[32m";
         String purple = "\u001B[35m";
+        String black = "\u001B[30m";
+        String purpleBG = "\u001B[45m";
         String reset = "\u001B[0m";
 
         System.out.println(green + "  a b c d e f g h ");
         for (int i = 0; i < 8; i++) {
             System.out.print(green + (i + 1) + " " + reset);
             for (int j = 0; j < 8; j++) {
-                System.out.print((chessboard[i][j] == 1 ? purple + chessboard[i][j] + reset : chessboard[i][j]) + " ");
+                if (i == currentI && j == currentJ) System.out.print(purpleBG + black + chessboard[i][j] + reset + " ");
+                else
+                    System.out.print((chessboard[i][j] == 1 ? purple + chessboard[i][j] + reset : chessboard[i][j]) + " ");
             }
             System.out.println();
         }
@@ -68,8 +77,12 @@ public class KnightChessBoard {
     }
 
     private static void simulateRandomMoves() {
-        if (isBoardFull() || noMoves) {
+        if (noMoves) {
             System.out.println("Board is full after " + movesMade + " moves.");
+            System.out.println();
+            printOutChessboard();
+        } else if (isBoardFull()) {
+            System.out.println("Board is solved after " + movesMade + " moves.");
             System.out.println();
             printOutChessboard();
         } else {
