@@ -6,14 +6,21 @@ import java.util.Random;
 import static com.adriantache.utils.Utils.printDescription;
 
 public class KnightChessBoard {
+    private static final int EMPTY = 0;
+    private static final int KNIGHT_VISITED = 1;
+    private static int[][] chessboard = new int[8][8];
+    private static int currentI;
+    private static int currentJ;
+    private static boolean noMoves = false;
+    private static int movesMade = 0;
+
+
     private KnightChessBoard() {
         throw new IllegalStateException("Utility class");
     }
 
     public static void main() {
-        int[][] chessboard = new int[8][8];
-        final int EMPTY = 0;
-        final int KNIGHT_VISITED = 1;
+
 
         printDescription("This is a program that finds the minimum number of \n" +
                 "moves a horse must make on a chessboard to cover the \n" +
@@ -26,14 +33,23 @@ public class KnightChessBoard {
 
         //put knight in random initial position
         Random random = new Random();
-        chessboard[random.nextInt(8)][random.nextInt(8)] = KNIGHT_VISITED;
+        currentI = random.nextInt(8);
+        currentJ = random.nextInt(8);
+        chessboard[currentI][currentJ] = KNIGHT_VISITED;
 
         //print out chessboard
-        printOutChessboard(chessboard);
+        printOutChessboard();
+
+        //simulate random moves
+        simulateRandomMoves();
+
+
+        //go to main
+//        Utils.backToMain();
 
     }
 
-    private static void printOutChessboard(int[][] chessboard) {
+    private static void printOutChessboard() {
         //playing with some console colouring
         String green = "\u001B[32m";
         String purple = "\u001B[35m";
@@ -47,5 +63,63 @@ public class KnightChessBoard {
             }
             System.out.println();
         }
+
+        System.out.println();
+    }
+
+    private static void simulateRandomMoves() {
+        if (isBoardFull() || noMoves) {
+            System.out.println("Board is full after " + movesMade + " moves.");
+            System.out.println();
+            printOutChessboard();
+        } else {
+            moveKnight();
+            simulateRandomMoves();
+        }
+    }
+
+    private static void moveKnight() {
+        int[][] possibleMoves = {{-1, -2}, {+1, -2}, {+2, -1}, {+2, +1}, {+1, +2}, {-1, +2}, {-2, +1}, {-2, -1}};
+        Random random = new Random();
+        int[] chosenMove = possibleMoves[random.nextInt(8)];
+
+        if (currentI + chosenMove[0] >= 0 && currentI + chosenMove[0] < 8
+                && currentJ + chosenMove[1] >= 0 && currentJ + chosenMove[1] < 8
+                && chessboard[currentI + chosenMove[0]][currentJ + chosenMove[1]] != 1) {
+            currentI += chosenMove[0];
+            currentJ += chosenMove[1];
+            chessboard[currentI][currentJ] = KNIGHT_VISITED;
+            movesMade++;
+        } else {
+            moveKnightSequentially();
+        }
+    }
+
+    private static void moveKnightSequentially() {
+        int[][] possibleMoves = {{-1, -2}, {+1, -2}, {+2, -1}, {+2, +1}, {+1, +2}, {-1, +2}, {-2, +1}, {-2, -1}};
+        int cursor = 0;
+
+        for (int i = cursor; i < possibleMoves.length; i++) {
+            if (currentI + possibleMoves[i][0] >= 0 && currentI + possibleMoves[i][0] < 8
+                    && currentJ + possibleMoves[i][1] >= 0 && currentJ + possibleMoves[i][1] < 8
+                    && chessboard[currentI + possibleMoves[i][0]][currentJ + possibleMoves[i][1]] != 1) {
+                currentI += possibleMoves[i][0];
+                currentJ += possibleMoves[i][1];
+                chessboard[currentI][currentJ] = KNIGHT_VISITED;
+                break;
+            } else cursor++;
+        }
+
+        if (cursor == 8) noMoves = true;
+    }
+
+    private static boolean isBoardFull() {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (chessboard[i][j] == 0) return false;
+            }
+        }
+
+        return true;
     }
 }
