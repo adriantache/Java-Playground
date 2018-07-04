@@ -34,11 +34,16 @@ public class KnightChessBoard {
     }
 
     private static void printOutChessboard(int[][] chessboard) {
-        System.out.println("  a b c d e f g h ");
+        //playing with some console colouring
+        String green = "\u001B[32m";
+        String purple = "\u001B[35m";
+        String reset = "\u001B[0m";
+
+        System.out.println(green + "  a b c d e f g h ");
         for (int i = 0; i < 8; i++) {
-            System.out.print((i + 1) + " ");
+            System.out.print(green + (i + 1) + " " + reset);
             for (int j = 0; j < 8; j++) {
-                System.out.print(chessboard[i][j] + " ");
+                System.out.print((chessboard[i][j] == 1 ? purple + chessboard[i][j] + reset : chessboard[i][j]) + " ");
             }
             System.out.println();
         }
