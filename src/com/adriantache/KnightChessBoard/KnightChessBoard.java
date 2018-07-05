@@ -98,7 +98,8 @@ public class KnightChessBoard {
         for (int i = cursor; i < possibleMoves.length; i++) {
             if (currentI + possibleMoves[i][0] >= 0 && currentI + possibleMoves[i][0] < 8
                     && currentJ + possibleMoves[i][1] >= 0 && currentJ + possibleMoves[i][1] < 8
-                    && chessboard[currentI + possibleMoves[i][0]][currentJ + possibleMoves[i][1]] != 1) {
+                    && chessboard[currentI + possibleMoves[i][0]][currentJ + possibleMoves[i][1]] != 1
+                    && !nextMoveStuck(currentI + possibleMoves[i][0],currentI + possibleMoves[i][1])) {
                 currentI += possibleMoves[i][0];
                 currentJ += possibleMoves[i][1];
                 chessboard[currentI][currentJ] = KNIGHT_VISITED;
@@ -108,6 +109,18 @@ public class KnightChessBoard {
         }
 
         if (cursor == 8) noMoves = true;
+    }
+
+    private static boolean nextMoveStuck(int i, int j){
+        int[][] possibleMoves = {{-1, -2}, {+1, -2}, {+2, -1}, {+2, +1}, {+1, +2}, {-1, +2}, {-2, +1}, {-2, -1}};
+
+        for (int k = 0; k < 8; k++) {
+            if (i + possibleMoves[k][0] >= 0 && i + possibleMoves[k][0] < 8
+                    && j + possibleMoves[k][1] >= 0 && j + possibleMoves[k][1] < 8
+                    && chessboard[i + possibleMoves[k][0]][j + possibleMoves[k][1]] != 1) return false;
+        }
+
+        return true;
     }
 
     private static boolean isBoardFull() {
