@@ -86,25 +86,8 @@ public class KnightChessBoard {
             System.out.println();
             printOutChessboard();
         } else {
-            moveKnight();
-            simulateRandomMoves();
-        }
-    }
-
-    private static void moveKnight() {
-        int[][] possibleMoves = {{-1, -2}, {+1, -2}, {+2, -1}, {+2, +1}, {+1, +2}, {-1, +2}, {-2, +1}, {-2, -1}};
-        Random random = new Random();
-        int[] chosenMove = possibleMoves[random.nextInt(8)];
-
-        if (currentI + chosenMove[0] >= 0 && currentI + chosenMove[0] < 8
-                && currentJ + chosenMove[1] >= 0 && currentJ + chosenMove[1] < 8
-                && chessboard[currentI + chosenMove[0]][currentJ + chosenMove[1]] != 1) {
-            currentI += chosenMove[0];
-            currentJ += chosenMove[1];
-            chessboard[currentI][currentJ] = KNIGHT_VISITED;
-            movesMade++;
-        } else {
             moveKnightSequentially();
+            simulateRandomMoves();
         }
     }
 
@@ -119,6 +102,7 @@ public class KnightChessBoard {
                 currentI += possibleMoves[i][0];
                 currentJ += possibleMoves[i][1];
                 chessboard[currentI][currentJ] = KNIGHT_VISITED;
+                movesMade++;
                 break;
             } else cursor++;
         }
