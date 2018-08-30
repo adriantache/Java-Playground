@@ -2,6 +2,9 @@ package com.adriantache.stream_practice;
 
 import com.adriantache.utils.Utils;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import static com.adriantache.utils.Utils.printDescription;
@@ -18,7 +21,7 @@ public class StreamPractice {
         System.out.println("Choose an option:\n" +
                 "1. Read an array of bytes\n" +
                 "2. Print format\n" +
-                "3. \n" +
+                "3. File operations\n" +
                 "4. \n" +
                 "5. \n" +
                 "6. \n");
@@ -51,10 +54,10 @@ public class StreamPractice {
                 readArrayOfBytes();
                 break;
             case '2':
-printf();
+                printf();
                 break;
             case '3':
-
+                fileOperations();
                 break;
             case '4':
 
@@ -101,9 +104,56 @@ printf();
     private static void printf() {
         System.out.println("Printing characters using a format.");
 
-       System.out.printf("%4$2s %3$2s %2$2s %1$2s", "a", "b", "c", "d");
-       System.out.println();
-       System.out.format("%4$2s %3$2s %2$2s %1$2s", "a", "b", "c", "d");
+        System.out.printf("%4$2s %3$2s %2$2s %1$2s", "a", "b", "c", "d");
+        System.out.println();
+        System.out.format("%4$2s %3$2s %2$2s %1$2s", "a", "b", "c", "d");
+    }
+
+    private static void fileOperations() {
+        final String FILENAME = "TEST.TXT";
+        final String OUTPUT = "This is a test.\n";
+
+        System.out.println("Writing to " + FILENAME + ".");
+        FileOutputStream fOut = null;
+
+        try {
+            fOut = new FileOutputStream(FILENAME);
+            for (int i = 0; i < OUTPUT.length(); i++) {
+                fOut.write(OUTPUT.charAt(i));
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Cannot create/find file!");
+        } catch (IOException e) {
+            System.out.println("Cannot write to file!");
+        } finally {
+            try {
+                if (fOut != null) fOut.close();
+            } catch (IOException e) {
+                System.out.println("Cannot close file!");
+            }
+        }
+
+        System.out.println("Reading from " + FILENAME + ".");
+        FileInputStream fIn = null;
+
+        try {
+            fIn = new FileInputStream(FILENAME);
+            int i;
+            do {
+                i = fIn.read();
+                if (i != -1) System.out.print((char) i);
+            } while (i != -1);
+        } catch (FileNotFoundException e) {
+            System.out.println("Cannot find file!");
+        } catch (IOException e) {
+            System.out.println("Cannot read from file!");
+        } finally {
+            try {
+                if (fIn != null) fIn.close();
+            } catch (IOException e) {
+                System.out.println("Cannot close file!");
+            }
+        }
     }
 
 }
