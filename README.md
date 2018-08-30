@@ -8,3 +8,5 @@ A not-so-often-updated list of what this contains:
 2. Stack/Queue
 3. Sorting Algorithms
 4. Palindrome
+5. Knight Chess Board
+6. Stream Practice
