@@ -133,11 +133,9 @@ public class StreamPractice {
             }
         }
 
-        System.out.println("Reading from " + FILENAME + ".");
-        FileInputStream fIn = null;
-
-        try {
-            fIn = new FileInputStream(FILENAME);
+        //replacing this try to a "try-with-resources"
+        System.out.println("Reading from " + FILENAME + ":");
+        try (FileInputStream fIn = new FileInputStream(FILENAME)){
             int i;
             do {
                 i = fIn.read();
@@ -147,12 +145,6 @@ public class StreamPractice {
             System.out.println("Cannot find file!");
         } catch (IOException e) {
             System.out.println("Cannot read from file!");
-        } finally {
-            try {
-                if (fIn != null) fIn.close();
-            } catch (IOException e) {
-                System.out.println("Cannot close file!");
-            }
         }
     }
 
