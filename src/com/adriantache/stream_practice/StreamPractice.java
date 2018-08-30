@@ -72,7 +72,6 @@ public class StreamPractice {
                 System.out.println("Illegal option!");
         }
 
-
         //go to main
         Utils.backToMain();
     }
@@ -113,11 +112,12 @@ public class StreamPractice {
         final String FILENAME = "TEST.TXT";
         final String OUTPUT = "This is a test.\n";
 
-        System.out.println("Writing to " + FILENAME + ".");
+        System.out.println("Writing \"" + OUTPUT.subSequence(0, OUTPUT.length() - 1) + "\" to " + FILENAME + ".");
         FileOutputStream fOut = null;
 
         try {
-            fOut = new FileOutputStream(FILENAME);
+            //using append to create an amusingly long file, otherwise it overwrites by default!
+            fOut = new FileOutputStream(FILENAME, true);
             for (int i = 0; i < OUTPUT.length(); i++) {
                 fOut.write(OUTPUT.charAt(i));
             }
