@@ -2,10 +2,7 @@ package com.adriantache.stream_practice;
 
 import com.adriantache.utils.Utils;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 
 import static com.adriantache.utils.Utils.printDescription;
 
@@ -22,7 +19,7 @@ public class StreamPractice {
                 "1. Read an array of bytes\n" +
                 "2. Print format\n" +
                 "3. File operations\n" +
-                "4. \n" +
+                "4. Data Streams\n" +
                 "5. \n" +
                 "6. \n");
 
@@ -60,7 +57,7 @@ public class StreamPractice {
                 fileOperations();
                 break;
             case '4':
-
+                dataStreams();
                 break;
             case '5':
 
@@ -135,7 +132,7 @@ public class StreamPractice {
 
         //replacing this try to a "try-with-resources"
         System.out.println("Reading from " + FILENAME + ":");
-        try (FileInputStream fIn = new FileInputStream(FILENAME)){
+        try (FileInputStream fIn = new FileInputStream(FILENAME)) {
             int i;
             do {
                 i = fIn.read();
@@ -143,6 +140,34 @@ public class StreamPractice {
             } while (i != -1);
         } catch (FileNotFoundException e) {
             System.out.println("Cannot find file!");
+        } catch (IOException e) {
+            System.out.println("Cannot read from file!");
+        }
+    }
+
+    private static void dataStreams() {
+        final String FILENAME = "TEST.RAW";
+        final boolean OUTPUT_BOOL = true;
+        final double OUTPUT_DOUBLE = 0.0556d;
+        final int OUTPUT_INT = 4;
+
+        System.out.println("Writing \"" + Boolean.toString(OUTPUT_BOOL) + ", " + Double.toString(OUTPUT_DOUBLE) +
+                ", " + Integer.toString(OUTPUT_INT) + "\" to " + FILENAME + ".");
+
+        try (DataOutputStream dataOutputStream = new DataOutputStream(new FileOutputStream(FILENAME))) {
+            dataOutputStream.writeBoolean(OUTPUT_BOOL);
+            dataOutputStream.writeDouble(OUTPUT_DOUBLE);
+            dataOutputStream.writeInt(OUTPUT_INT);
+        } catch (IOException e) {
+            System.out.println("Cannot write to file!");
+        }
+
+        System.out.println("Reading from " + FILENAME + ":");
+
+        try (DataInputStream dataInputStream = new DataInputStream(new FileInputStream(FILENAME))) {
+            System.out.println("Boolean: " + Boolean.toString(dataInputStream.readBoolean()));
+            System.out.println("Double: " + Double.toString(dataInputStream.readDouble()));
+            System.out.println("Int: " + Integer.toString(dataInputStream.readInt()));
         } catch (IOException e) {
             System.out.println("Cannot read from file!");
         }
