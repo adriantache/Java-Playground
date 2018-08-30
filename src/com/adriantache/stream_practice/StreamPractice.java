@@ -3,6 +3,7 @@ package com.adriantache.stream_practice;
 import com.adriantache.utils.Utils;
 
 import java.io.*;
+import java.util.Arrays;
 
 import static com.adriantache.utils.Utils.printDescription;
 
@@ -20,7 +21,7 @@ public class StreamPractice {
                 "2. Print format\n" +
                 "3. File operations\n" +
                 "4. Data Streams\n" +
-                "5. \n" +
+                "5. Console input\n" +
                 "6. \n");
 
         char input = '\n';
@@ -60,7 +61,7 @@ public class StreamPractice {
                 dataStreams();
                 break;
             case '5':
-
+                consoleInput();
                 break;
             case '6':
 
@@ -165,12 +166,32 @@ public class StreamPractice {
         System.out.println("Reading from " + FILENAME + ":");
 
         try (DataInputStream dataInputStream = new DataInputStream(new FileInputStream(FILENAME))) {
-            System.out.println("Boolean: " + Boolean.toString(dataInputStream.readBoolean()));
-            System.out.println("Double: " + Double.toString(dataInputStream.readDouble()));
-            System.out.println("Int: " + Integer.toString(dataInputStream.readInt()));
+            System.out.println("Boolean: \t" + Boolean.toString(dataInputStream.readBoolean()));
+            System.out.println("Double: \t" + Double.toString(dataInputStream.readDouble()));
+            System.out.println("Int: \t\t" + Integer.toString(dataInputStream.readInt()));
         } catch (IOException e) {
             System.out.println("Cannot read from file!");
         }
+    }
+
+    private static void consoleInput() {
+        System.out.println("Please input a \"password\":");
+        char[] password = null;
+
+        Console console = System.console();
+
+        if (console == null) {
+            System.out.println("ERROR: Cannot obtain console.");
+            return;
+        }
+
+        try {
+            password = console.readPassword();
+        } catch (IOError e) {
+            System.out.println("Error reading password.");
+        }
+
+        System.out.println("Your password was: " + Arrays.toString(password));
     }
 
 }
