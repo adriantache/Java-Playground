@@ -1,10 +1,11 @@
 package com.adriantache;
 
-import com.adriantache.KnightChessBoard.KnightChessBoard;
+import com.adriantache.knight_chess_board.KnightChessBoard;
 import com.adriantache.bouncing_ball.BouncingBall;
 import com.adriantache.palindrome.Palindrome;
 import com.adriantache.sorting_algorithms.SortingAlgorithms;
 import com.adriantache.stack_queue.StackQueue;
+import com.adriantache.stream_practice.StreamPractice;
 
 import java.io.IOException;
 
@@ -18,7 +19,8 @@ public class Main {
                 "2. Stack/Queue\n" +
                 "3. Sorting Algorithms\n" +
                 "4. Palindrome\n" +
-                "5. Knight Chess Board\n");
+                "5. Knight Chess Board\n" +
+                "6. Stream Practice\n");
 
         //get user input
         try {
@@ -56,6 +58,9 @@ public class Main {
                 break;
             case '5':
                 KnightChessBoard.main();
+                break;
+            case '6':
+                StreamPractice.main();
                 break;
             default:
                 System.out.println("Illegal option!");

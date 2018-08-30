@@ -1,4 +1,4 @@
-package com.adriantache.KnightChessBoard;
+package com.adriantache.knight_chess_board;
 
 import com.adriantache.utils.Utils;
 
