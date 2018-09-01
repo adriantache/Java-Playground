@@ -22,7 +22,7 @@ public class StreamPractice {
                 "3. File operations\n" +
                 "4. Data Streams\n" +
                 "5. Console input\n" +
-                "6. \n");
+                "6. Character based streams\n");
 
         char input = '\n';
 
@@ -64,7 +64,7 @@ public class StreamPractice {
                 consoleInput();
                 break;
             case '6':
-
+                characterBasedStreams();
                 break;
             default:
                 System.out.println("Illegal option!");
@@ -192,6 +192,28 @@ public class StreamPractice {
         }
 
         System.out.println("Your password was: " + Arrays.toString(password));
+    }
+
+    private static void characterBasedStreams(){
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+
+            System.out.println("Enter a string:");
+            char c;
+            do{
+                c = (char) bufferedReader.read();
+                System.out.print(c);
+            } while (c!='\n');
+
+            System.out.println("\nEnter lines of text: (type stop to... stop)");
+            String s = "";
+            do {
+                System.out.println(s);
+                s = bufferedReader.readLine();
+            } while (!s.equalsIgnoreCase("stop"));
+        } catch (IOException e) {
+            System.out.println("Error reading input.");
+        }
     }
 
 }
