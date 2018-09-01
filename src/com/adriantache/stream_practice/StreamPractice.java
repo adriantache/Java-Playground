@@ -195,24 +195,25 @@ public class StreamPractice {
     }
 
     private static void characterBasedStreams(){
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        PrintWriter printWriter = new PrintWriter(System.out, true);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
-            System.out.println("Enter a string:");
+        try {
+            printWriter.println("Enter a string:");
             char c;
             do{
                 c = (char) bufferedReader.read();
-                System.out.print(c);
+                printWriter.print(c);
             } while (c!='\n');
 
-            System.out.println("\nEnter lines of text: (type stop to... stop)");
+            printWriter.println("\nEnter lines of text: (type stop to... stop)");
             String s = "";
             do {
-                System.out.println(s);
+                printWriter.println(s);
                 s = bufferedReader.readLine();
             } while (!s.equalsIgnoreCase("stop"));
         } catch (IOException e) {
-            System.out.println("Error reading input.");
+            printWriter.println("Error reading input.");
         }
     }
 
