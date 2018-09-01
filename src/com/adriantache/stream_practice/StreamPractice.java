@@ -22,7 +22,8 @@ public class StreamPractice {
                 "3. File operations\n" +
                 "4. Data Streams\n" +
                 "5. Console input\n" +
-                "6. Character based streams\n");
+                "6. Character based streams\n" +
+                "7. Character based IO\n");
 
         char input = '\n';
 
@@ -65,6 +66,9 @@ public class StreamPractice {
                 break;
             case '6':
                 characterBasedStreams();
+                break;
+            case '7':
+                characterBasedIO();
                 break;
             default:
                 System.out.println("Illegal option!");
@@ -194,17 +198,17 @@ public class StreamPractice {
         System.out.println("Your password was: " + Arrays.toString(password));
     }
 
-    private static void characterBasedStreams(){
+    private static void characterBasedStreams() {
         PrintWriter printWriter = new PrintWriter(System.out, true);
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
         try {
             printWriter.println("Enter a string:");
             char c;
-            do{
+            do {
                 c = (char) bufferedReader.read();
                 printWriter.print(c);
-            } while (c!='\n');
+            } while (c != '\n');
 
             printWriter.println("\nEnter lines of text: (type stop to... stop)");
             String s = "";
@@ -217,4 +221,25 @@ public class StreamPractice {
         }
     }
 
+    private static void characterBasedIO() {
+        final String FILENAME = "TEST2.TXT";
+        final String OUTPUT = "This is another test.\n";
+
+        System.out.println("Writing \"" + OUTPUT.subSequence(0, OUTPUT.length() - 1) + "\" to " + FILENAME + ".");
+
+        try (FileWriter fileWriter = new FileWriter(FILENAME, true);
+             BufferedReader bufferedReader = new BufferedReader(new FileReader(FILENAME))) {
+            fileWriter.write(OUTPUT);
+
+            System.out.println("Reading from " + FILENAME + ":");
+            String s;
+            do {
+                s = bufferedReader.readLine();
+                if (s != null) System.out.println(s);
+            } while (s != null);
+
+        } catch (IOException e) {
+            System.out.println("Cannot write to file!");
+        }
+    }
 }
