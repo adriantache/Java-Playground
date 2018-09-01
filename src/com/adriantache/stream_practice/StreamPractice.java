@@ -227,10 +227,14 @@ public class StreamPractice {
 
         System.out.println("Writing \"" + OUTPUT.subSequence(0, OUTPUT.length() - 1) + "\" to " + FILENAME + ".");
 
-        try (FileWriter fileWriter = new FileWriter(FILENAME, true);
-             BufferedReader bufferedReader = new BufferedReader(new FileReader(FILENAME))) {
+        try (FileWriter fileWriter = new FileWriter(FILENAME, true)) {
             fileWriter.write(OUTPUT);
+        } catch (IOException e) {
+            System.out.println("Cannot write to file!");
+        }
 
+        //separating FileWriter and FileReader
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(FILENAME))) {
             System.out.println("Reading from " + FILENAME + ":");
             String s;
             do {
