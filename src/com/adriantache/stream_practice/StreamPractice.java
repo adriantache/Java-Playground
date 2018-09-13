@@ -6,6 +6,7 @@ import java.io.*;
 import java.util.Arrays;
 
 import static com.adriantache.utils.Utils.printDescription;
+import static com.adriantache.utils.Utils.takeInput;
 
 public class StreamPractice {
     private StreamPractice() {
@@ -23,7 +24,8 @@ public class StreamPractice {
                 "4. Data Streams\n" +
                 "5. Console input\n" +
                 "6. Character based streams\n" +
-                "7. Character based IO\n");
+                "7. Character based IO\n" +
+                "8. Help file\n");
 
         char input = '\n';
 
@@ -69,6 +71,9 @@ public class StreamPractice {
                 break;
             case '7':
                 characterBasedIO();
+                break;
+            case '8':
+                helpFile();
                 break;
             default:
                 System.out.println("Illegal option!");
@@ -245,5 +250,12 @@ public class StreamPractice {
         } catch (IOException e) {
             System.out.println("Cannot write to file!");
         }
+    }
+
+    private static void helpFile() {
+        System.out.println("Please input a topic: (if, switch, for, while, do, break, continue)");
+
+        Help help = new Help();
+        help.helpOn(takeInput(true));
     }
 }
