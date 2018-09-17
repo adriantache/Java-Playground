@@ -4,6 +4,7 @@ import com.adriantache.utils.Utils;
 
 import java.io.*;
 import java.util.Arrays;
+import java.util.Scanner;
 
 import static com.adriantache.utils.Utils.printDescription;
 import static com.adriantache.utils.Utils.takeInput;
@@ -25,7 +26,8 @@ public class StreamPractice {
                 "5. Console input\n" +
                 "6. Character based streams\n" +
                 "7. Character based IO\n" +
-                "8. Help file\n");
+                "8. Help file\n" +
+                "9. Scanner\n");
 
         char input = '\n';
 
@@ -74,6 +76,9 @@ public class StreamPractice {
                 break;
             case '8':
                 helpFile();
+                break;
+            case '9':
+                scanner();
                 break;
             default:
                 System.out.println("Illegal option!");
@@ -257,5 +262,23 @@ public class StreamPractice {
 
         Help help = new Help();
         help.helpOn(takeInput(true));
+    }
+
+    private static void scanner() {
+        System.out.println("Please input a variable:");
+
+        Scanner scanner = new Scanner(System.in);
+
+        if (scanner.hasNextInt()) {
+            System.out.println("Int detected: " + Integer.toString(scanner.nextInt()));
+        } else if (scanner.hasNextDouble()){
+            System.out.println("Double detected: " + Double.toString(scanner.nextDouble()));
+        } else if (scanner.hasNextBoolean()){
+            System.out.println("Boolean detected: " + Boolean.toString(scanner.nextBoolean()));
+        } else if (scanner.hasNextByte()){
+            System.out.println("Byte detected: " + Byte.toString(scanner.nextByte()));
+        }else {
+            System.out.println("Unknown input or String.");
+        }
     }
 }
