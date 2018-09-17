@@ -3,6 +3,7 @@ package com.adriantache.stream_practice;
 import com.adriantache.utils.Utils;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -27,7 +28,8 @@ public class StreamPractice {
                 "6. Character based streams\n" +
                 "7. Character based IO\n" +
                 "8. Help file\n" +
-                "9. Scanner\n");
+                "9. Scanner\n" +
+                "0. Number to binary\n");
 
         char input = '\n';
 
@@ -79,6 +81,9 @@ public class StreamPractice {
                 break;
             case '9':
                 scanner();
+                break;
+            case '0':
+                stringToBinary();
                 break;
             default:
                 System.out.println("Illegal option!");
@@ -271,14 +276,78 @@ public class StreamPractice {
 
         if (scanner.hasNextInt()) {
             System.out.println("Int detected: " + Integer.toString(scanner.nextInt()));
-        } else if (scanner.hasNextDouble()){
+        } else if (scanner.hasNextDouble()) {
             System.out.println("Double detected: " + Double.toString(scanner.nextDouble()));
-        } else if (scanner.hasNextBoolean()){
+        } else if (scanner.hasNextBoolean()) {
             System.out.println("Boolean detected: " + Boolean.toString(scanner.nextBoolean()));
-        } else if (scanner.hasNextByte()){
+        } else if (scanner.hasNextByte()) {
             System.out.println("Byte detected: " + Byte.toString(scanner.nextByte()));
-        }else {
+        } else {
             System.out.println("Unknown input or String.");
         }
+    }
+
+    private static void stringToBinary() {
+        System.out.println("Please enter a number:");
+
+        Scanner scanner = new Scanner(System.in);
+        if (scanner.hasNextInt()) {
+            int i = scanner.nextInt();
+            System.out.println("Binary output: " + binaryOutput(i));
+        } else if (scanner.hasNextDouble()) {
+            double d = scanner.nextDouble();
+            System.out.println("Binary output: " + Long.toBinaryString(Double.doubleToRawLongBits(d)));
+        }
+    }
+
+    private static String binaryOutput(int input) {
+        boolean negative = false;
+        if (input < 0) {
+            negative = true;
+            input = -input;
+        }
+
+        //compute binary
+        ArrayList<Integer> binary = new ArrayList<>();
+        while (input > 0) {
+            binary.add(input % 2);
+            input /= 2;
+        }
+
+        //pad out number to 16 bits
+        while (binary.size() < 16) binary.add(0);
+
+        //if negative
+        if (negative) {
+            //flip bits
+            for (int i = 0; i < binary.size(); i++) {
+                int integer = binary.get(i);
+
+                integer = integer == 0 ? 1 : 0;
+
+                binary.set(i, integer);
+            }
+
+            //and add 1
+            for (int i = 0; i < binary.size(); i++) {
+                int integer = binary.get(i);
+
+                if (integer == 1) {
+                    binary.set(i, 0);
+                } else {
+                    binary.set(i, 1);
+                    break;
+                }
+            }
+        }
+
+        //convert ArrayList to inverted string
+        StringBuilder sb = new StringBuilder();
+        for (int integer = binary.size() - 1; integer >= 0; integer--) {
+            sb.append(binary.get(integer));
+            if (integer % 4 == 0) sb.append(' ');
+        }
+
+        return sb.toString();
     }
 }
