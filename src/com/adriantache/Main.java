@@ -2,6 +2,7 @@ package com.adriantache;
 
 import com.adriantache.knight_chess_board.KnightChessBoard;
 import com.adriantache.bouncing_ball.BouncingBall;
+import com.adriantache.multithreading.MultiThreading;
 import com.adriantache.palindrome.Palindrome;
 import com.adriantache.sorting_algorithms.SortingAlgorithms;
 import com.adriantache.stack_queue.StackQueue;
@@ -20,7 +21,8 @@ public class Main {
                 "3. Sorting Algorithms\n" +
                 "4. Palindrome\n" +
                 "5. Knight Chess Board\n" +
-                "6. Stream Practice\n");
+                "6. Stream Practice\n" +
+                "7. Multithreading\n");
 
         //get user input
         try {
@@ -61,6 +63,9 @@ public class Main {
                 break;
             case '6':
                 StreamPractice.main();
+                break;
+            case '7':
+                MultiThreading.main();
                 break;
             default:
                 System.out.println("Illegal option!");
