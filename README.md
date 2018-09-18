@@ -10,3 +10,4 @@ A not-so-often-updated list of what this contains:
 4. Palindrome
 5. Knight Chess Board
 6. Stream Practice
+7. Multithreading
