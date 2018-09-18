@@ -15,7 +15,8 @@ public class MultiThreading {
                 "with multithreading.");
 
         System.out.println("Choose an option:\n" +
-                "1. Single Thread\n");
+                "1. Single Thread\n" +
+                "2. Synchronized Threads\n");
 
         String input = takeInput(false);
 
@@ -25,6 +26,9 @@ public class MultiThreading {
         switch (input) {
             case "1":
                 singleThread();
+                break;
+            case "2":
+                synchronize();
                 break;
             default:
                 System.out.println("Illegal option!");
@@ -51,12 +55,26 @@ public class MultiThreading {
                 Thread.sleep(50);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
         }
 
         System.out.println(thread.getName() + " has finished.");
     }
 
+
+    private static void synchronize() {
+        TickTock tt = new TickTock();
+        MyThread mtl = MyThread.createAndStart("Tick", tt);
+        MyThread mt2 = MyThread.createAndStart("Tock", tt);
+        try {
+            mtl.thread.join();
+            mt2.thread.join();
+        } catch (InterruptedException exc) {
+            System.out.println("Main thread interrupted.");
+            Thread.currentThread().interrupt();
+        }
+    }
 }
 
 class WasteTimeThread implements Runnable {
@@ -81,11 +99,101 @@ class WasteTimeThread implements Runnable {
     public void run() {
         try {
             for (int i = 0; i < 5; i++) {
-                thread.sleep(400);
+                Thread.sleep(400);
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
             Thread.currentThread().interrupt();
+        }
+    }
+}
+
+// Use wait() and notify() to create a ticking clock,
+class TickTock {
+    String state; // contains the state of the clock
+
+    synchronized void tick(boolean running) {
+        if (!running) {
+            // stop the clock
+            state = "ticked";
+            // notify any waiting threads
+            notify();
+            return;
+        }
+
+        System.out.print("Tick ");
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            Thread.currentThread().interrupt();
+        }
+        state = "ticked"; // set the current state to ticked
+        notify(); // let tock() run
+
+        try {
+            while (!state.equals("tocked"))
+                wait(); // wait for tock() to complete
+        } catch (InterruptedException exc) {
+            System.out.println("Thread interrupted.");
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    synchronized void tock(boolean running) {
+        if (!running) {
+            // stop the clock
+            state = "tocked";
+            // notify any waiting threads
+            notify();
+            return;
+        }
+
+        System.out.println("Tock ");
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            Thread.currentThread().interrupt();
+        }
+        state = "tocked";
+        notify();
+
+        try {
+            while (!state.equals("ticked"))
+                wait();
+        } catch (InterruptedException exc) {
+            System.out.println("Thread interrupted.");
+            Thread.currentThread().interrupt();
+        }
+    }
+}
+
+class MyThread implements Runnable {
+    Thread thread;
+    TickTock ttOb;
+
+    // Construct a new thread.
+    MyThread(String name, TickTock tt) {
+        thread = new Thread(this, name);
+        ttOb = tt;
+    }
+
+    // A factory method that creates and starts a thread,
+    public static MyThread createAndStart(String name, TickTock tt) {
+        MyThread myThread = new MyThread(name, tt);
+        myThread.thread.start(); // start the thread
+        return myThread;
+    }
+
+    // Entry point of thread,
+    public void run() {
+        if (thread.getName().compareTo("Tick") == 0) {
+            for (int i = 0; i < 5; i++) ttOb.tick(true);
+            ttOb.tick(false);
+        } else {
+            for (int i = 0; i < 5; i++) ttOb.tock(true);
+            ttOb.tock(false);
         }
     }
 }

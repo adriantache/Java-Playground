@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class Help {
+class Help {
     String helpFile = "HELP.TXT";
 
     Help() {
