@@ -1,7 +1,8 @@
 package com.adriantache;
 
-import com.adriantache.knight_chess_board.KnightChessBoard;
 import com.adriantache.bouncing_ball.BouncingBall;
+import com.adriantache.enum_practice.EnumPractice;
+import com.adriantache.knight_chess_board.KnightChessBoard;
 import com.adriantache.multithreading.MultiThreading;
 import com.adriantache.palindrome.Palindrome;
 import com.adriantache.sorting_algorithms.SortingAlgorithms;
@@ -22,7 +23,8 @@ public class Main {
                 "4. Palindrome\n" +
                 "5. Knight Chess Board\n" +
                 "6. Stream Practice\n" +
-                "7. Multithreading\n");
+                "7. Multithreading\n" +
+                "8. Enum Practice\n");
 
         //get user input
         try {
@@ -66,6 +68,9 @@ public class Main {
                 break;
             case '7':
                 MultiThreading.main();
+                break;
+            case '8':
+                EnumPractice.main();
                 break;
             default:
                 System.out.println("Illegal option!");

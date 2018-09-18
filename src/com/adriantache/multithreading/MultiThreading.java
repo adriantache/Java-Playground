@@ -173,20 +173,20 @@ class MyThread implements Runnable {
     Thread thread;
     TickTock ttOb;
 
-    // Construct a new thread.
+    // Construct a new thread
     MyThread(String name, TickTock tt) {
         thread = new Thread(this, name);
         ttOb = tt;
     }
 
-    // A factory method that creates and starts a thread,
+    // A factory method that creates and starts a thread
     public static MyThread createAndStart(String name, TickTock tt) {
         MyThread myThread = new MyThread(name, tt);
         myThread.thread.start(); // start the thread
         return myThread;
     }
 
-    // Entry point of thread,
+    // Entry point of thread
     public void run() {
         if (thread.getName().compareTo("Tick") == 0) {
             for (int i = 0; i < 5; i++) ttOb.tick(true);
