@@ -4,6 +4,12 @@ import static com.adriantache.utils.Utils.backToMain;
 
 enum TrafficLightColours {RED, GREEN, YELLOW}
 
+//define a custom annotation
+@interface Values {
+    String value();
+    int count();
+}
+
 public class TrafficLight {
     TrafficLight() {
         throw new AssertionError("Class should not be instantiated!");
@@ -65,6 +71,8 @@ class TrafficLightSimulator implements Runnable {
         }
     }
 
+    //and use the custom annotation
+    @Values(value = "RED_YELLOW_GREEN", count = 3)
     private synchronized void switchColour() {
         switch (tlc) {
             case YELLOW:
