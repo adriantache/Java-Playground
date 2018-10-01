@@ -71,20 +71,7 @@ class TrafficLightSimulator implements Runnable {
     public void run() {
         while (!stop) {
             try {
-                switch (tlc) {
-                    case RED:
-                        Thread.sleep(RED.getDelay());
-                        break;
-                    case GREEN:
-                        Thread.sleep(GREEN.getDelay());
-                        break;
-                    case YELLOW:
-                        Thread.sleep(YELLOW.getDelay());
-                        break;
-                    default:
-                        System.out.println("ERROR!");
-                        break;
-                }
+                Thread.sleep(tlc.getDelay());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
