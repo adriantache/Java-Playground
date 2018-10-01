@@ -1,12 +1,35 @@
 package com.adriantache.multithreading;
 
+import static com.adriantache.multithreading.TrafficLightColours.*;
 import static com.adriantache.utils.Utils.backToMain;
 
-enum TrafficLightColours {RED, GREEN, YELLOW}
+enum TrafficLightColours {
+    RED(4000), GREEN(5000), YELLOW(1000);
+    private int delay;
+
+    TrafficLightColours(int delay) {
+        this.delay = delay;
+    }
+
+    int getDelay() {
+        return this.delay;
+    }
+}
+
+//main annotation types:
+//@Retention(value = RetentionPolicy.CLASS)
+//@Documented
+//@Target(ElementType.ANNOTATION_TYPE)
+//@Inherited
+//@Override
+//@Deprecated
+//@SafeVarargs
+//@FunctionalInterface
 
 //define a custom annotation
 @interface Values {
     String value();
+
     int count();
 }
 
@@ -28,8 +51,6 @@ public class TrafficLight {
         }
 
         tls.setStop();
-
-        backToMain();
     }
 }
 
@@ -39,7 +60,7 @@ class TrafficLightSimulator implements Runnable {
     private boolean changed = false;
 
     TrafficLightSimulator() {
-        tlc = TrafficLightColours.RED;
+        tlc = RED;
     }
 
     void setStop() {
@@ -52,13 +73,13 @@ class TrafficLightSimulator implements Runnable {
             try {
                 switch (tlc) {
                     case RED:
-                        Thread.sleep(4000);
+                        Thread.sleep(RED.getDelay());
                         break;
                     case GREEN:
-                        Thread.sleep(5000);
+                        Thread.sleep(GREEN.getDelay());
                         break;
                     case YELLOW:
-                        Thread.sleep(1000);
+                        Thread.sleep(YELLOW.getDelay());
                         break;
                     default:
                         System.out.println("ERROR!");
@@ -74,20 +95,11 @@ class TrafficLightSimulator implements Runnable {
     //and use the custom annotation
     @Values(value = "RED_YELLOW_GREEN", count = 3)
     private synchronized void switchColour() {
-        switch (tlc) {
-            case YELLOW:
-                tlc = TrafficLightColours.RED;
-                break;
-            case RED:
-                tlc = TrafficLightColours.GREEN;
-                break;
-            case GREEN:
-                tlc = TrafficLightColours.YELLOW;
-                break;
-            default:
-                System.out.println("ERROR!");
-                break;
-        }
+        int ordinal = tlc.ordinal();
+
+        ordinal = ordinal == 2 ? 0 : ++ordinal;
+
+        tlc = TrafficLightColours.values()[ordinal];
 
         changed = true;
         notifyAll();

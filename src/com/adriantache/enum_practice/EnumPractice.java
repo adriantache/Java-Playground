@@ -1,5 +1,6 @@
 package com.adriantache.enum_practice;
 
+import com.adriantache.multithreading.TrafficLight;
 import com.adriantache.utils.Utils;
 
 import java.util.Arrays;
@@ -18,7 +19,9 @@ public class EnumPractice {
 
         System.out.println("Choose an option:\n" +
                 "1. Enum Practice\n" +
-                "2. Enum Variable\n");
+                "2. Enum Variable\n" +
+                "3. Enum Exercise\n" +
+                "4. Traffic Light (duplicate)\n");
 
         String input = takeInput(false);
 
@@ -31,6 +34,12 @@ public class EnumPractice {
                 break;
             case "2":
                 enumVariable();
+                break;
+            case "3":
+                enumExercise();
+                break;
+            case "4":
+                TrafficLight.main();
                 break;
             default:
                 System.out.println("Illegal option!");
@@ -85,6 +94,12 @@ public class EnumPractice {
         }
     }
 
+    private static void enumExercise() {
+        for (Tools t : Tools.values()) {
+            System.out.println(t + " " + t.ordinal());
+        }
+    }
+
     enum Days {MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY}
 
     enum Transport {
@@ -100,5 +115,7 @@ public class EnumPractice {
             return speed;
         }
     }
+
+    enum Tools {SCREWDRIVER, WRENCH, HAMMER, PLIERS}
 
 }
