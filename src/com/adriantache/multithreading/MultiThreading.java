@@ -16,7 +16,8 @@ public class MultiThreading {
 
         System.out.println("Choose an option:\n" +
                 "1. Single Thread\n" +
-                "2. Synchronized Threads\n");
+                "2. Synchronized Threads\n" +
+                "3. Traffic Light\n");
 
         String input = takeInput(false);
 
@@ -29,6 +30,9 @@ public class MultiThreading {
                 break;
             case "2":
                 synchronize();
+                break;
+            case "3":
+                TrafficLight.main();
                 break;
             default:
                 System.out.println("Illegal option!");

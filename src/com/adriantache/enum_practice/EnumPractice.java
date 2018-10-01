@@ -40,10 +40,6 @@ public class EnumPractice {
         Utils.backToMain();
     }
 
-    private static void enumVariable() {
-        //todo get input on which enum you want then print speed
-    }
-
     private static void enumPractice() {
         Days monday;
 
@@ -51,7 +47,7 @@ public class EnumPractice {
 
         String day = takeInput(true).trim().toUpperCase();
 
-        //error here, why though...
+        //todo fix error here, probably with my implementation of takeInput of multiple chars
         if (!day.isEmpty())
             monday = Days.valueOf(day);
         else monday = Days.MONDAY;
@@ -67,6 +63,26 @@ public class EnumPractice {
         }
 
         System.out.println("Possible values for Days enum: " + Arrays.toString(Days.values()));
+
+        //we can also call compareTo() to compare positional values
+        for (Days d : Days.values()) {
+            System.out.println("Day " + d.ordinal() + " is " + d);
+        }
+    }
+
+    private static void enumVariable() {
+        Transport car = Transport.CAR;
+        System.out.println("Default speed for the car is " + car.getSpeed() + " MPH.");
+
+        System.out.println("Default speed for a boat is " + Transport.BOAT.getSpeed() + " MPH.");
+
+        System.out.println("Default speed for the rest is:");
+
+        for (Transport t : Transport.values()) {
+            if (t != Transport.BOAT && t != Transport.CAR) {
+                System.out.println("Default speed for a " + t + " is " + t.getSpeed() + " MPH.");
+            }
+        }
     }
 
     enum Days {MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY}
