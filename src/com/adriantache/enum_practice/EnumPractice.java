@@ -56,7 +56,9 @@ public class EnumPractice {
 
         String day = takeInput(true).trim().toUpperCase();
 
-        //todo fix error here, probably with my implementation of takeInput of multiple chars
+        System.out.println("Day value input is:" + day);
+
+        //todo fix error here, no idea why it happens
         if (!day.isEmpty())
             monday = Days.valueOf(day);
         else monday = Days.MONDAY;

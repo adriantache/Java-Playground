@@ -11,6 +11,9 @@ import com.adriantache.stream_practice.StreamPractice;
 
 import java.io.IOException;
 
+import static com.adriantache.utils.Utils.backToMain;
+import static com.adriantache.utils.Utils.takeInput;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -72,8 +75,27 @@ public class Main {
             case '8':
                 EnumPractice.main();
                 break;
+            case 'x':
+                debugInput();
+                break;
             default:
                 System.out.println("Illegal option!");
         }
+    }
+
+    private static void debugInput() {
+        String s;
+
+        System.out.println("Please input stuff:\n");
+
+        for (int i = 0; i < 9; i++) {
+            s = takeInput(true).trim().toUpperCase();
+
+            if (s.equals("X")) break;
+
+            System.out.println("Input detected: " + s);
+        }
+
+        backToMain();
     }
 }
