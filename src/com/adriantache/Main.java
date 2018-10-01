@@ -2,6 +2,7 @@ package com.adriantache;
 
 import com.adriantache.bouncing_ball.BouncingBall;
 import com.adriantache.enum_practice.EnumPractice;
+import com.adriantache.generics.Generics;
 import com.adriantache.knight_chess_board.KnightChessBoard;
 import com.adriantache.multithreading.MultiThreading;
 import com.adriantache.palindrome.Palindrome;
@@ -27,7 +28,8 @@ public class Main {
                 "5. Knight Chess Board\n" +
                 "6. Stream Practice\n" +
                 "7. Multithreading\n" +
-                "8. Enum Practice\n");
+                "8. Enum Practice\n" +
+                "9. Generics\n");
 
         //get user input
         try {
@@ -74,6 +76,9 @@ public class Main {
                 break;
             case '8':
                 EnumPractice.main();
+                break;
+            case '9':
+                Generics.main();
                 break;
             case 'x':
                 debugInput();
