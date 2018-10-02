@@ -74,7 +74,15 @@ public class Generics {
         MathStuff<Double> gDouble = new MathStuff<>(d);
 
         System.out.println("We took the numbers " + gInt.getObject() + " and " + gDouble.getObject()
-                + " and we split them in half to get results " + gInt.splitInHalf() + " and " + gDouble.splitInHalf());
+                + " and we split them in half to get results " + gInt.splitInHalf() + " and "
+                + gDouble.splitInHalf());
+
+        try {
+            System.out.println("We also divided the first by the latter and got the result "
+                    + gInt.divide(gDouble));
+        } catch (IllegalArgumentException e) {
+            System.out.println("We also divided the first by the latter but couldn't!");
+        }
     }
 
 }
@@ -132,5 +140,10 @@ class MathStuff<T extends Number> {
     //since this is numeric we can manually box it into a double
     double splitInHalf() {
         return object.doubleValue() / 2;
+    }
+
+    double divide(MathStuff<? extends Number> divideBy) throws IllegalArgumentException {
+        if (divideBy.object.doubleValue() == 0) throw new IllegalArgumentException("Divide by zero error!");
+        else return object.doubleValue() / divideBy.object.doubleValue();
     }
 }
