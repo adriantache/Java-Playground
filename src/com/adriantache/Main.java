@@ -9,6 +9,7 @@ import com.adriantache.palindrome.Palindrome;
 import com.adriantache.sorting_algorithms.SortingAlgorithms;
 import com.adriantache.stack_queue.StackQueue;
 import com.adriantache.stream_practice.StreamPractice;
+import com.adriantache.utils.DateToMillis;
 
 import java.io.IOException;
 
@@ -29,7 +30,8 @@ public class Main {
                 "6. Stream Practice\n" +
                 "7. Multithreading\n" +
                 "8. Enum Practice\n" +
-                "9. Generics\n");
+                "9. Generics\n" +
+                "0. Date to Millis\n");
 
         //get user input
         try {
@@ -79,6 +81,9 @@ public class Main {
                 break;
             case '9':
                 Generics.main();
+                break;
+            case '0':
+                DateToMillis.main();
                 break;
             case 'x':
                 debugInput();

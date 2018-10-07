@@ -142,6 +142,7 @@ class MathStuff<T extends Number> {
         return object.doubleValue() / 2;
     }
 
+    //todo learn common exceptions
     double divide(MathStuff<? extends Number> divideBy) throws IllegalArgumentException {
         if (divideBy.object.doubleValue() == 0) throw new IllegalArgumentException("Divide by zero error!");
         else return object.doubleValue() / divideBy.object.doubleValue();
