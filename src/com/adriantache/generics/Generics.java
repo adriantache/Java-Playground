@@ -17,7 +17,7 @@ public class Generics {
         System.out.println("Choose an option:\n" +
                 "1.  Sample Generics\n" +
                 "2.  Bounded Types\n" +
-                "3.  \n" +
+                "3.  Generic Methods\n" +
                 "4.  \n");
 
         String input = takeInput(false);
@@ -33,7 +33,7 @@ public class Generics {
                 boundedTypes();
                 break;
             case "3":
-
+                genericMethods();
                 break;
             case "4":
 
@@ -44,6 +44,18 @@ public class Generics {
 
         //go to main
         Utils.backToMain();
+    }
+
+    private static void genericMethods() {
+        double x = 1.2D;
+        byte b = 7;
+
+        System.out.println("Int value of " + x + " & " + b +
+                " : " + getIntValue(x) + " & " + getIntValue(b));
+    }
+
+    private static <T extends Number> int getIntValue(T x) {
+        return x.intValue();
     }
 
     private static void sampleGenerics() {
