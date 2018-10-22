@@ -5,6 +5,11 @@ import com.adriantache.utils.Utils;
 import static com.adriantache.utils.Utils.printDescription;
 import static com.adriantache.utils.Utils.takeInput;
 
+//generic interface
+interface Containment<T extends Number> {
+    boolean contains(T o);
+}
+
 public class Generics {
     private Generics() {
         throw new IllegalStateException("Utility class");
@@ -17,8 +22,7 @@ public class Generics {
         System.out.println("Choose an option:\n" +
                 "1.  Sample Generics\n" +
                 "2.  Bounded Types\n" +
-                "3.  Generic Methods\n" +
-                "4.  \n");
+                "3.  Generic Methods\n");
 
         String input = takeInput(false);
 
@@ -34,9 +38,6 @@ public class Generics {
                 break;
             case "3":
                 genericMethods();
-                break;
-            case "4":
-
                 break;
             default:
                 System.out.println("Illegal option!");
@@ -54,6 +55,7 @@ public class Generics {
                 " : " + getIntValue(x) + " & " + getIntValue(b));
     }
 
+    //generic constructor of the syntax: private static <T> int name(T t)
     private static <T extends Number> int getIntValue(T x) {
         return x.intValue();
     }
@@ -158,5 +160,23 @@ class MathStuff<T extends Number> {
     double divide(MathStuff<? extends Number> divideBy) throws IllegalArgumentException {
         if (divideBy.object.doubleValue() == 0) throw new IllegalArgumentException("Divide by zero error!");
         else return object.doubleValue() / divideBy.object.doubleValue();
+    }
+}
+
+//if a class implements a generic interface it must also be generic
+class MyClass<T extends Number> implements Containment<T> {
+    T[] array;
+
+    MyClass(T[] array) {
+        this.array = array;
+    }
+
+    @Override
+    public boolean contains(T o) {
+        for (T object : array) {
+            if (object.equals(o)) return true;
+        }
+
+        return false;
     }
 }
