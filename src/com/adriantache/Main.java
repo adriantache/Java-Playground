@@ -4,6 +4,7 @@ import com.adriantache.bouncing_ball.BouncingBall;
 import com.adriantache.enum_practice.EnumPractice;
 import com.adriantache.generics.Generics;
 import com.adriantache.knight_chess_board.KnightChessBoard;
+import com.adriantache.lambdas.Lambdas;
 import com.adriantache.multithreading.MultiThreading;
 import com.adriantache.palindrome.Palindrome;
 import com.adriantache.sorting_algorithms.SortingAlgorithms;
@@ -31,7 +32,8 @@ public class Main {
                 "7. Multithreading\n" +
                 "8. Enum Practice\n" +
                 "9. Generics\n" +
-                "0. Date to Millis\n");
+                "0. Date to Millis\n" +
+                "a. Lambdas\n");
 
         //get user input
         try {
@@ -84,6 +86,9 @@ public class Main {
                 break;
             case '0':
                 DateToMillis.main();
+                break;
+            case 'a':
+                Lambdas.main();
                 break;
             case 'x':
                 debugInput();
