@@ -5,6 +5,7 @@ import com.adriantache.enum_practice.EnumPractice;
 import com.adriantache.generics.Generics;
 import com.adriantache.knight_chess_board.KnightChessBoard;
 import com.adriantache.lambdas.Lambdas;
+import com.adriantache.misc.Misc;
 import com.adriantache.multithreading.MultiThreading;
 import com.adriantache.palindrome.Palindrome;
 import com.adriantache.sorting_algorithms.SortingAlgorithms;
@@ -33,7 +34,8 @@ public class Main {
                 "8. Enum Practice\n" +
                 "9. Generics\n" +
                 "0. Date to Millis\n" +
-                "a. Lambdas\n");
+                "a. Lambdas\n" +
+                "\n(x. Sandbox)\n");
 
         //get user input
         try {
@@ -91,26 +93,10 @@ public class Main {
                 Lambdas.main();
                 break;
             case 'x':
-                debugInput();
+                Misc.main();
                 break;
             default:
                 System.out.println("Illegal option!");
         }
-    }
-
-    private static void debugInput() {
-        String s;
-
-        System.out.println("Please input stuff:\n");
-
-        for (int i = 0; i < 9; i++) {
-            s = takeInput(true).trim().toUpperCase();
-
-            if (s.equals("X")) break;
-
-            System.out.println("Input detected: " + s);
-        }
-
-        backToMain();
     }
 }

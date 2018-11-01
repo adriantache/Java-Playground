@@ -51,7 +51,7 @@ public class Lambdas {
         EmptyFunctionalInterface emptyFunctionalInterface = () -> 42;
         System.out.println(emptyFunctionalInterface.test());
 
-        System.out.println("Testing regular lambda expression.");
+        System.out.println("\nTesting regular lambda expression.");
         //use a lambda to instance a class and define implementation for the interface
         MathTests greaterThanZero = i -> i > 0;
         System.out.println(n + " greater than zero? " + greaterThanZero.test(n));
@@ -60,7 +60,7 @@ public class Lambdas {
         MathTests absValueEqual = i -> i == (i > 0 ? i : -i);
         System.out.println(n + " equal to its absolute value? " + absValueEqual.test(n));
 
-        System.out.println("Testing generic lambda expression.");
+        System.out.println("\nTesting generic lambda expression.");
         //rerun same tests with generic interface
         GenericFunctionalInterface<Integer> greaterThanZeroGeneric = i -> i > 0;
         System.out.println(n + " is greater than zero? " + greaterThanZeroGeneric.test(n));
